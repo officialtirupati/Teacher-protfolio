@@ -7,9 +7,16 @@ function scrollToSection(id) {
 
 // Form
 const scriptURL = "https://script.google.com/macros/s/AKfycbzLX1T7dp7AltAR7fXTsqnhKkB3B0vSCebVx0pODyWcVUDOBVWqOlkirapJNxQpcX2sVQ/exec";
+const form = document.getElementById("contactForm");
+const btn = document.getElementById("submitBtn");
+const msg = document.getElementById("successMsg");
 
-document.getElementById("contactForm").addEventListener("submit", function(e) {
+form.addEventListener("submit", function(e) {
   e.preventDefault();
+
+  // 🔄 Loading state
+  btn.innerText = "Sending...";
+  btn.disabled = true;
 
   const data = {
     name: document.getElementById("name").value,
@@ -23,16 +30,34 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
   })
   .then(res => res.json())
   .then(response => {
-    document.getElementById("successMsg").innerText =
-      "✅ Message sent successfully!";
-    document.getElementById("contactForm").reset();
+
+    // ✅ Success state
+    btn.innerText = "Sent ✅";
+    msg.innerText = "Message sent successfully!";
+
+    form.reset();
+
+    // 🔁 Reset button after 3 sec
+    setTimeout(() => {
+      btn.innerText = "Send Message";
+      btn.disabled = false;
+      msg.innerText = "";
+    }, 3000);
+
   })
   .catch(error => {
-    document.getElementById("successMsg").innerText =
-      "❌ Something went wrong!";
+
+    // ❌ Error state
+    btn.innerText = "Error ❌";
+    msg.innerText = "Something went wrong!";
+
+    setTimeout(() => {
+      btn.innerText = "Send Message";
+      btn.disabled = false;
+      msg.innerText = "";
+    }, 3000);
   });
 });
-
 
 
 
