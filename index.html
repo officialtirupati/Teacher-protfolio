@@ -77,21 +77,14 @@
   <section id="contact" class="fade-in">
     <h2>Contact Me</h2>
 
-    <form action="https://formsubmit.co/tirupatiprasad007@gmail.com" method="POST">
+<form id="contactForm">
+  <input type="text" id="name" placeholder="Your Name" required>
+  <input type="email" id="email" placeholder="Your Email" required>
+  <textarea id="message" placeholder="Message" required></textarea>
+  <button type="submit">Send Message</button>
+</form>
 
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Message" required></textarea>
-
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_subject" value="New Contact Message!">
-      <input type="hidden" name="_template" value="table">
-
-     <input type="hidden" name="_next" value="https://officialtirupati.github.io/Teacher-protfolio/thankyou.html">
-
-      <button type="submit">Send Message</button>
-
-    </form>
+<p id="successMsg"></p>
   </section>
 <!-- Footer -->
 <footer class="footer">
